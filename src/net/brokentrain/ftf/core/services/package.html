@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+</head>
+<body>
+The services sub-package is responsible for providing implementation of the
+different providers that the system supports. These providers may use their own
+concrete API or be simple web page or XML parsers depending on their natue.
+
+<p>
+The following services are supported by default:
+
+<table border="1" cellpadding="3" cellspacing="0">
+  <thead CLASS="TableHeadingColor">
+  <tr>
+    <td>Service</td><td>Description</td>
+  </tr>
+  </thead>
+  <tr>
+      <td>ArXivProvider</td>
+      <td>Basic wrapper around the ArXiv lookup service.</td>
+  </tr>
+  <tr>
+      <td>CiteSeer</td>
+      <td>Web scrapper to the CiteSeer online service that incorporates a wide
+          range of academic sources.</td>
+  </tr>
+  <tr>
+      <td>DOIProvider</td>
+      <td>Basic wrapper around the DOI lookup service.</td>
+  </tr>
+  <tr>
+      <td>GoogleScholar</td>
+      <td>Web scrapper to the scholar service provided by Google.</td>
+  </tr>
+  <tr>
+      <td>GoogleWebSearch</td>
+      <td>API service for Googles web search service. Please note that a suitable
+          key for the API must be set in the user configuration files.</td>
+  </tr>
+  <tr>
+      <td>PlosJournals</td>
+      <td>Web scrapper to the biology service provided by the Public Library of
+          Science.</td>
+  </tr>
+  <tr>
+      <td>PubMed</td>
+      <td>Interface to the EUtilities tools provided by PubMed.</td>
+  </tr>
+  <tr>
+      <td>PubMed Central</td>
+      <td>Web scrapper to the PubMed Central service provided by PubMed.</td>
+  </tr>
+  <tr>
+      <td>Scirus</td>
+      <td>Web scrapper to the Scirus service.</td>
+  </tr>
+  <tr>
+      <td>Terrier</td>
+      <td>API service for the Terrier desktop application. Please note that
+          further configuration is possible within the user configuration
+          files.</td>
+  </tr>
+  <tr>
+      <td>WebOfKnowledge</td>
+      <td>Web scrapper to the Web of Knowledge service provided by Thomson.</td>
+  </tr>
+  <tr>
+      <td>YahooWebSearch</td>
+      <td>API service for Yahoos web search service. Please note that a
+          suitable application ID for the API must be set in the user
+          configuration files.</td>
+  </tr>
+</table>
+</p>
+
+<p>The {@link net.brokentrain.ftf.core.services.ServiceFactory ServiceFactory}
+class handles the registration and management of individual services. Any
+provider wishing to register itself must provide the following code:
+
+<pre>
+<code>
+    public class MyProvider implements SearchService {
+
+    private static class Factory extends ServiceFactory {
+        protected SearchService create() {
+            return new MyProvider();
+        }
+    }
+
+    static {
+        ServiceFactory.addFactory("MyProvider", new Factory());
+    }
+</code>
+</pre>
+
+and can then be used normally.
+</p>
+
+</body>
+</html>

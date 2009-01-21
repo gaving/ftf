@@ -1,0 +1,106 @@
+Full-text Fetcher - Overview
+============================
+
+.03 October 2007: Full-text fetcher 0.3 Released!
+************************************************************************
+This is the next major release in the release cycle of FTF.
+
+Read the link:CHANGELOG.html[CHANGELOG] for the major updates that have
+been added.
+************************************************************************
+
+.24 August 2007: Full-text fetcher 0.2 Released!
+************************************************************************
+This is the next major release in the release cycle of FTF.
+
+Read the link:CHANGELOG.html[CHANGELOG] for the major updates that have
+been added.
+************************************************************************
+
+About
+-----
+Full-text Fetcher is an automated tool for retrieving the full-text of a
+specific article from a variety of different sources. It was created as a
+final year project at the University of Glasgow. The purpose of this project
+was to investigate and provide a fully automated and hassle free way of
+retrieving articles from the Internet, as opposed to using manual web
+browsing procedures.
+
+Features
+--------
+Full-text Fetcher accepts the following inputs:
+
+- link:http://en.wikipedia.org/wiki/PMID[PMIDs]
+- link:http://en.wikipedia.org/wiki/DOI[DOIs]
+- link:http://en.wikipedia.org/wiki/Arxiv[Arxiv IDs]
+- and standard textual queries
+
+And will perform a search over the following services for a particular
+kind of result (pdf document, web page, etc):
+
+- link:http://www.google.com/[Google]
+- link:http://desktop.google.com/[Google Desktop*]
+- link:http://scholar.google.com/[Google Scholar]
+- link:http://biology.plosjournals.org/[Plos Journals (biology specific site(!))]
+- link:http://www.ncbi.nlm.nih.gov/[PubMed]
+- link:http://www.pubmedcentral.nih.gov/[PubMed Central]
+- link:http://www.scirus.com/[Scirus]
+- link:http://ir.dcs.gla.ac.uk/terrier/[Terrier*]
+- link:http://isiknowledge.com/[Web Of Knowledge]
+- link:http://www.yahoo.com/[Yahoo]
+
+FTF will then aggregate these results together and display them (along with
+any associated metadata (e.g. from PubMed) that can be found about a
+particular match).
+
+Please note that '*' indicates that this is a locally run search service
+that depends on installed software on the host machine and not an
+independent web service or website.
+
+Prerequisites
+-------------
+
+Full-text Fetcher is written in the Java programming language, so you will
+need a suitable Java SDK installed (version 5.0 or later) in order to run
+run it. Please refer to the link:INSTALL.html[INSTALL] documentation for
+details on how to do this.
+
+Downloading
+-----------
+The following distributions are currently available:
+
+link:release/ftf_0.3-linux-bin.tar.gz[ftf_0.3-linux-bin.tar.gz]::
+  A tarball distribution of the latest version of FTF for *NIX
+  platforms.
+
+link:release/ftf_0.3-osx-bin.tar.gz[ftf_0.3-osx-bin.tar.gz]::
+  A special case tarball for OSX.
+
+link:release/ftf_0.3-windows-bin.zip[ftf_0.3-windows-bin.zip]::
+  A zipped distribution of the latest version of FTF for Microsoft Windows
+  users.
+
+WARNING: This is the first release and therefore experimental.  Please refer
+to the contact section on what to do if you encounter problems.
+
+Screenshots
+-----------
+link:screenshots/0.3-windows[Here] are some screenshots of FTF in action.
+
+Development
+-----------
+A development version can be checked out directly from an online subversion
+repository at http://svn.brokentrain.net/ftf/trunk[] or viewed directly
+online.
+
+Additional Information
+----------------------
+Please refer to the accompanying documentation, specifically
+link:README.html[README] and link:INSTALL.html[INSTALL] on how to install
+and use the software.
+
+Contact
+-------
+In the event of any bugs, issues or just general comments please contact the
+author at mailto:gavin@brokentrain.net[]
+

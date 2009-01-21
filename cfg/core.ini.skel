@@ -1,0 +1,11 @@
+[connection]
+connectionTimeout=3000
+readTimeout=3000
+
+[proxy]
+proxySet=false
+proxyHost=wwwcache.dcs.gla.ac.uk
+proxyPort=8080
+password=
+domain=
+username=

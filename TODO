@@ -1,0 +1,231 @@
+Full-text Fetcher - TODO File
+=============================
+
+NOTE: These are rough developer notes now, for concrete requirements and
+related discussion and proper ticket system has been set up at:
+http://ftf.brokentrain.net/report[].
+
+The following sections are short features which should definitely be done
+before each release.
+
+Mini-schedule
+-------------
+
+<Snip> (See previous revisions for history)
+
+Before 0.2
+~~~~~~~~~~
+
+- Fix the broken FileData stuff.
+- [x] Display query tabs in view menu
+- [x] Refactor a bunch of stuff!
+- [x] Fix no URL information appearing selectable on the results (or services) properties.
+- [x] Don't save search history unless really necessary
+- [x] Fix terrier prefs?!
+- [x] Get better at extracting pubmed titles
+- [x] Get better at extracting pubmed central titles
+- [x] Support all the services.ini data, keys etc.
+- [x] Fix highlight button being broken (deferred)
+- [x] Sort system tray icons not rendering properly
+- [x] Enabled the ability to disable crawler functionality.
+
+0.3 and beyond
+~~~~~~~~~~~~~~
+
+- Make the tabs more natural, such as firefox behaviour
+- Make drag and drop work, combining items and searches
+- Allow the customisation of tokens.txt and patterns.txt in the preferences
+- (MAYBE) Make download threads daemon so they don't hang on close?
+- Make the transfer queue intelligently save pdf names based on metadata
+- Move the base urls to services.ini
+- The Article is not considered in PageHandler from metatag links.
+- Protect against all sort of gibberish in the config files, patterns, tokens.
+- Have some decent unit tests set up for checking everything works
+- Intelligent proxy detection?
+- Highlight tabs on new activity
+- Make lookup services standalone tools instead of services
+- Colour non reachable links (i.e. 403/404/503 ones) a different colour
+- Try and convert google desktops fancy getImage() thing for the tooltip
+- Search PDF text
+- Network search support
+- Fancy windows installer?
+- Popup functionality for when ftf is in the tray
+- Button to clear the transfer list
+
+Thoughts
+--------
+
+The following are unimplemented and potential features for future releases of
+Full-text Fetcher. A collection of random thoughts mostly.
+
+Core
+~~~~
+
+    - Adopt a dynamic retry policy, if a site is taking long to respond;
+      increase it's timeout time and lower it if it's fairly quick.
+
+    - XML configuration files instead of ini ones?
+
+    - Sort out some better demo apps other than the GUI and include them in a
+      release. e.g. 'run-downloader' etc in a bin/ directory for power users
+      that just want to use the fetching functionality and nothing else.
+
+    - Support bibtex entries as an input and extract what is needed from them
+      for a particular match.
+
+    - Make error messages for the transfer window a bit more informative
+      (Currently just says 'Error' when it might be a proxy issue, timeout,
+      etc.)
+
+    - Sort out Mac OSX support issues with SWT.
+
+        * In the event it ever works, create a release build rule in the ant
+          build file. Look into creating the application bundles (.app) and
+          then exporting to a osx disk image format (.dmg) for *ideal*
+          distribution.
+
+        * Growl support, quicksilver integration?
+
+    - Better user manual and documentation, online tutorials, etc.
+
+    - Integrated update manager for keeping up to date with newer versions.
+
+
+Problematic Sites
+~~~~~~~~~~~~~~~~~
+
+    - Blackwell synergy (spider trap links)
+
+    - Elseiver linkinghub
+
+    - Springerlink
+
+    - Wiley interscience
+
+Services
+~~~~~~~~
+
+    - Google
+
+        * SOAP API deprecated, new users can't get new keys. Have a look at
+        http://sitening.com/evilapi/ and use that instead.
+
+    - PubMed and PubMed Central
+
+        * Use PubMed SOAP service rather than the ELink one.
+
+        * Focus a bit more on PubMed as the "primary" search tool, provide a
+        bunch of functions such as abstract lookups, better and more useful
+        citation functions, etc.
+
+    - Plos Journals (biology one)
+
+        * Link in other sites other than just the biology specific one. (They
+        all follow similar formats, and identical layouts.)
+
+    - Web of Science
+
+        * Reuse the session ID instead of polling for it every now and again.
+
+    - Terrier
+
+        * Extracted text from the match, 'context' of the query from the pdf
+        and display it within the metadata window.
+
+    - DOILookup
+
+        * Broken, crossref changed service.
+
+Interface
+~~~~~~~~~
+
+    - Splash screen on launch.
+
+    - 'Clear log' & 'clear transfer' button
+
+    - URLDecoder.decode some price results (some results give back &36;30.00 or whatever)
+
+    - Column sorting, for log etc.
+        * Sort by relevance?
+        * Sort by date modified?
+        * Sort by score? (Terrier)
+        * Sort by name?
+
+        - Implement sorting logically, sort within the individual trees?
+          Abolish the trees entirely?
+
+    - Show total number of matches compared to the limit.
+
+    - Try and be intelligent about input, if I'm typing in a number then it's
+      probably just a PMID so I might want to just search PubMed type services.
+      If text, vice versa (although probably more the other way round since web
+      searches for random numbers sucks.)
+
+    - Properly convert Google and Yahoo snippets such as <b> into bold text for
+      pane, translating logical html tags into SWTs StyledText equivalents for
+      the metadata pane.
+
+    - Fancy bibtex window for tailoring any generated bibtex output, syntax
+      highlighting and allow editing of the output before 'Copy to clipboard'
+      or 'Send to friend..' etc.
+
+    - Make the price grabbing a bit more intelligent, avoid grabbing big chunks
+      of javascript because it sees a '$' character.
+
+    - Make columns configurable? 'Add columns...  [Title?] [URL?] [Price?]'
+
+    - Drag and drop support for certain logical things (e.g. Dragging a result
+      that has been returned to the desktop should automatically download the
+      paper and move it to the desktop/folder.)
+
+    - Allow optional entry of Athens passwords so that the crawlers can get
+      access to further web pages.
+
+    - Create interactive GUI for specifying user 'profiles' on launch and
+      tailoring the application for different groups of people. This should
+      also allow the input of 'license keys' for the support services e.g.
+      Yahoo application ids, Google keys, etc.
+
+   - GUI i18n (translation of the interface into different languages)
+
+   - Generate PDF/HTML tools for result sets?
+
+   - Configure what it means to be a 'text' service etc.
+
+   - Automatically tinyurl result urls of a certain length (science direct?)
+
+   - Combining tabs by dragging them on top of each other.
+
+   - Fancy nsi installer for windows distributions
+
+   - Bit concerned about ISO being used by the parser everywhere and not UTF.
+     Change this?
+
+   - Disable sources in the services menu which are unconfigured.
+
+   - Sort sort of way to make the services communicate with the GUI, "I'm
+     available on Linux! I'm not!" etc. isUsable() or something.
+
+   - Configurable default actions for double clicking!
+
+   - Look for the words "subscription" etc and dont suggest (free!) all the time.
+
+   - Mark non-free articles with an icon indicating that is so. Padlock or
+     something?
+
+   - Turn the PMID/DOI/ArXIV services into just tools which can be used through
+     the main interface. Do away with treating them as textual services since
+     they only will ever return one result (the ID of the paper being searched
+     for.)
+
+   - Context menu for status tab items, kill individual services etc
+
+   - More preferences - strip out dead matches (no 200 response code), remove
+     duplicates, etc.
+
+   - Get rid of the hardcoded services preferences and stuff, only build things
+     when we see an entry in services.ini and only THEN warn about an issue if
+     we can't find a controller for an entry.
+
+   - Automatically tag pdf documents with metadata on download
+     http://www.roseindia.net/java/itext/MetaData.shtml

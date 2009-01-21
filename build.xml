@@ -1,0 +1,439 @@
+<?xml version='1.0'?>
+
+<project name="FTF" default="run" basedir=".">
+
+    <!-- Key directories -->
+    <property name="bin" value="bin"/>
+    <property name="cfg" value="cfg"/>
+    <property name="dist" value="dist"/>
+    <property name="docs" value="docs/javadoc"/>
+    <property name="img" value="img"/>
+    <property name="include" value="include"/>
+    <property name="lib" value="lib"/>
+    <property name="misc" value="misc"/>
+    <property name="release" value="release"/>
+    <property name="scripts" value="scripts"/>
+    <property name="src" value="src"/>
+
+    <!-- Jar related -->
+    <property name="runclass" value="net.brokentrain.ftf.ui.gui.FTFLoader"/>
+
+    <!-- Comment out for version prompt -->
+    <property name="version" value="0.3" />
+
+    <!-- FTP stuff -->
+    <property name="ftp.host" value="gavin.brokentrain.net" />
+    <property name="ftp.dir" value="projects/ftf/release" />
+    <property name="ftp.user" value="gav" />
+
+    <target name="init">
+
+        <!-- Create the bin directory structure used by compile -->
+        <mkdir dir="${bin}" />
+
+        <!-- Create the directory for the jar file -->
+        <mkdir dir="${lib}" />
+
+        <!-- Create the dist directory -->
+        <mkdir dir="${dist}" />
+
+        <!-- Copy images over -->
+        <mkdir dir="${bin}/img" />
+        <copy todir="${bin}/img">
+            <fileset dir="${img}" />
+        </copy>
+
+        <!-- Copy misc files over -->
+        <mkdir dir="${bin}/misc" />
+        <copy todir="${bin}/misc">
+            <fileset dir="${misc}" />
+        </copy>
+
+        <!-- Copy log4j properties file over -->
+        <copy file="${src}/log4j.properties" todir="${bin}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac
+            srcdir="${src}" 
+            destdir="${bin}"
+            source="1.5"
+            target="1.5"
+            includeAntRuntime="no"
+            debug="true"
+            debuglevel="lines,vars,source">
+            <classpath>
+                <!-- Include all jar files  -->
+                <fileset dir="${include}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+
+            <!-- Exclude the test packages -->
+            <exclude name="net/brokentrain/ftf/tests/**"/>
+        </javac>
+
+    </target>
+
+    <target name="clean">
+        <echo message="Deleting non-essential dirs" />
+
+        <!-- Delete non-essential dirs -->
+        <delete dir="${bin}"/>
+        <delete dir="${lib}"/>
+        <delete dir="${docs}"/>
+        <delete dir="${dist}"/>
+        <delete dir="${release}"/>
+
+        <!-- Delete rogue class files in src dir -->
+        <delete quiet="true">
+            <fileset dir="${src}" includes="**/*.class"/>
+        </delete>
+    </target>
+
+    <target name="jar" depends="compile">
+
+        <!-- Unpackage all our dependences so we can jar them up -->
+        <!-- NOTE: This does not overwrite anything that may already exist -->
+        <unjar dest="${bin}" overwrite="false">
+            <fileset dir="${include}">
+                <include name="**/*.jar"/>
+                <exclude name="**/*swt*"/>
+            </fileset>
+        </unjar>
+
+        <!-- Make a jar file -->
+        <jar jarfile="${lib}/ftf.jar" basedir="${bin}/">
+            <manifest>
+
+                <!-- Default to launching the GUI interface -->
+                <attribute name="Main-Class" value="${runclass}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="docs" depends="compile, jar">
+
+        <!-- Create the directory for the java docs -->
+        <mkdir dir="${docs}" />
+
+        <!-- Create raw html javadoc -->
+        <echo message="Creating html javadoc.." />
+        <javadoc packagenames="net.brokentrain.ftf.*"
+            sourcepath="${src}"
+            defaultexcludes="yes"
+            destdir="${docs}"
+            author="true"
+            version="true"
+            use="true"
+            windowtitle="FTF API Documentation Version: ${version}">
+            <classpath>
+                <fileset dir="${bin}">
+                    <include name="**/*.class"/>
+                </fileset>
+            </classpath>
+        </javadoc>
+
+        <!-- Bundle up into readable pdf version -->
+        <echo message="Creating pdf version.." />
+        <javadoc doclet="com.tarsec.javadoc.pdfdoclet.PDFDoclet"
+            packagenames="net.brokentrain.ftf.*">
+            <sourcepath>
+                <pathelement location="${src}"/>
+            </sourcepath>
+            <doclet 
+                name="com.tarsec.javadoc.pdfdoclet.PDFDoclet">
+                <param name="-pdf" value="${docs}/FTF-javadoc.pdf" />
+                <param name="-config" value="${scripts}/pdfdoclet.properties" />
+            </doclet>
+            <classpath>
+                <fileset dir="${bin}">
+                    <include name="**/*.class"/>
+                </fileset>
+            </classpath>
+        </javadoc>
+    </target>
+
+    <target name="dist" depends="jar">
+
+        <!-- Copy the lib directory containing the main ftf jar file -->
+        <copy todir="${dist}">
+            <fileset dir="${lib}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </copy>
+
+        <!-- Copy user configuration over -->
+        <copy todir="${dist}/${cfg}">
+            <fileset dir="${cfg}">
+                <include name="**/*"/>
+
+                <!-- Exclude skeleton templates -->
+                <exclude name="**/*.skel"/>
+            </fileset>
+        </copy>
+
+        <!-- Copy miscallenous files over -->
+        <copy todir="${dist}/${misc}">
+            <fileset dir="${misc}">
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="run" depends="dist">
+
+        <!-- Add the SWT specific linux support to the jar by default -->
+        <!-- TODO use a conditional to use the target platform swt bundle -->
+        <jar jarfile="${dist}/ftf.jar" update="true">
+            <zipfileset src="${include}/swt-linux_3.4m1.jar" />
+        </jar>
+
+        <!-- Run FTF from the dist directory (testing purposes) -->
+        <java
+            jar="${dist}/ftf.jar"
+            dir="${dist}"
+            fork="true">
+
+            <!-- Limit the heap size to 256Mb of memory -->
+            <jvmarg value="-Xmx256m" />
+        </java>
+    </target>
+
+    <target name="src" depends="docs">
+
+        <!-- Bundle up the javadoc -->
+        <copy todir="${dist}/${src}/${docs}">
+            <fileset dir="${docs}">
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+
+        <!-- Bundle up the source code -->
+        <mkdir dir="${dist}/${src}" />
+        <copy todir="${dist}/${src}">
+            <fileset dir="${src}">
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+
+        <!-- Create a zip file of the source -->
+        <zip destfile="${dist}/src.zip" basedir="${dist}/src"/>
+
+        <!-- Delete the src directory so we don't bundle it up twice -->
+        <delete dir="${dist}/src"/>
+    </target>
+
+    <target name="src-release" depends="clean, dist">
+        <antcall target="src"/>
+
+        <!-- Call release task -->
+        <echo message="Calling release task" />
+        <antcall target="release"/>
+    </target>
+
+    <target name="release" depends="clean, dist">
+
+        <!-- Create the release directory -->
+        <mkdir dir="${release}" />
+
+        <!-- Determine the version number for this release -->
+        <input
+            message="Please enter the version number for this release:"
+            addproperty="version" />
+
+        <!-- Make each platform release separately -->
+        <echo message="Calling separate release tasks" />
+        <antcall target="linux-release"/>
+
+        <copy todir="${dist}" overwrite="true">
+            <fileset dir="${lib}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </copy>
+
+        <antcall target="windows-release"/>
+
+        <copy todir="${dist}" overwrite="true">
+            <fileset dir="${lib}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </copy>
+
+        <!--        <antcall target="mac-release"/>-->
+    </target>
+
+    <target name="linux-release">
+        <echo message="Preparing linux release.." />
+
+        <!-- Copy needed documentation over -->
+        <copy file="COPYING" todir="${dist}"/>
+        <copy file="INSTALL" todir="${dist}"/>
+        <copy file="README" todir="${dist}"/>
+
+        <!-- Copy executable script -->
+        <copy file="${scripts}/ftf.sh" todir="${dist}"/>
+
+        <!-- Add the SWT specific linux support to the jar -->
+        <jar jarfile="${dist}/ftf.jar" update="true">
+            <zipfileset src="${include}/swt-linux_3.4m1.jar" />
+        </jar>
+
+        <!-- Build a tarball of the distribution, excluding cruft -->
+        <tar tarfile="${dist}/ftf.tar" basedir="${dist}"
+            excludes="include/swt-windows*, include/swt-osx*, include/junit*,
+            include/antlr*"/>
+
+        <!-- Gunzip the tarball to make things smaller -->
+        <gzip zipfile="${release}/ftf_${version}-linux-bin.tar.gz"
+            src="${dist}/ftf.tar"/>
+
+        <!-- Delete the original tar file -->
+        <delete file="${dist}/ftf.tar"/>
+    </target>
+
+    <target name="mac-release">
+        <echo message="Preparing Macintosh release.." />
+        <!--        <echo message="UNIMPLEMENTED: No Macintosh release as of yet." />-->
+
+        <!-- Add the OSX specific linux support to the jar -->
+        <jar jarfile="${dist}/ftf.jar" update="true">
+            <zipfileset src="${include}/swt-osx_3.3m4.jar" />
+        </jar>
+
+        <!-- Bundle the jar into an Macintosh bundle -->
+        <!--<antcall target="mac-app"/>-->
+
+        <!-- Create a disk image -->
+        <!--<antcall target="mac-dmg"/>-->
+    </target>
+
+    <target name="mac-app" >
+        <echo message="Preparing mac .app bundle.." />
+
+        <!-- JarBundler ant task -->
+        <taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" />
+
+        <!-- Create the .app file -->
+        <jarbundler dir="${dist}"
+            name="ftf"
+            shortname="ftf"
+            signature="ftf"
+            mainclass="${runclass}"
+            bundleid="${runclass}"
+            infostring="Full-text Fetcher"
+            jvmversion="1.5+"
+            jar="${dist}/ftf.jar"
+            version="${version}"
+            vmoptions="-Xmx768">
+
+            <documenttype name="FTF Result Set"
+                extensions="frs"
+                role="Editor" />
+
+        </jarbundler>
+
+    </target>
+
+    <target name="mac-dmg" depends="mac-app" >
+        <echo message="Preparing mac disk image.." />
+        <exec executable="hdiutil" spawn="false">
+            <arg value="create" />
+            <arg value="-srcfolder" />
+            <arg value="${bundle.dir}" />
+            <arg value="-volname" />
+            <arg value="ftf" />
+            <arg value="${release}/mac-ftf.dmg" />
+        </exec>
+    </target>
+
+    <target name="windows-release">
+        <echo message="Preparing windows release.." />
+
+        <!-- Copy needed documentation over and append .txt extension -->
+        <copy file="COPYING" tofile="${dist}/COPYING.txt"/>
+        <delete file="${dist}/COPYING"/>
+        <copy file="INSTALL" tofile="${dist}/INSTALL.txt"/>
+        <delete file="${dist}/INSTALL"/>
+        <copy file="README" tofile="${dist}/README.txt"/>
+        <delete file="${dist}/README"/>
+
+        <copy todir="${dist}/x86">
+            <fileset dir="${include}/x86"/>
+        </copy>
+
+        <!-- Sort the EOL characters for windows files -->
+        <echo message="Sorting end of line characters.." />
+        <fixcrlf srcdir="${dist}" eol="dos" includes="**/*.txt **/cfg/*"/>
+
+        <!-- Add the Windows specific linux support to the jar -->
+        <jar jarfile="${dist}/ftf.jar" update="true">
+            <zipfileset src="${include}/swt-windows_3.3m4.jar" />
+        </jar>
+
+        <!-- JSmooth ant task -->
+        <taskdef name="jsmoothgen"
+            classname="net.charabia.jsmoothgen.ant.JSmoothGen"/>
+
+        <!-- Copy JSmooth project file to dist -->
+        <copy file="${scripts}/jsmooth/ftf.jsmooth" todir="${dist}" />
+
+        <!-- Generate windows executable (.exe) file -->
+        <echo message="Running jsmooth to create windows executable.." />
+        <jsmoothgen project="${dist}/ftf.jsmooth"
+            skeletonroot="${scripts}/jsmooth/skeletons"/>
+
+        <!-- Remove project file -->
+        <delete file="${dist}/ftf.jsmooth" />
+
+        <!-- Zip the release, excluding useless cruft -->
+        <zip destfile="${release}/ftf_${version}-windows-bin.zip"
+            basedir="${dist}" excludes="include/swt-linux*, include/swt-osx*,
+            *.sh, include/junit*, include/antlr*"/>
+    </target>
+
+    <target name="compile-test" depends="init, dist">
+        <javac srcdir="${src}/net/brokentrain/ftf/tests" destdir="${bin}">
+            <classpath>
+                <pathelement location="${bin}" />
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="test" depends="compile-test">
+        <junit
+            printSummary="yes"
+            haltonfailure="true"
+            dir="${dist}"
+            fork="true">
+            <test name="net.brokentrain.ftf.tests.AllTests" />
+            <formatter type="plain" usefile="false" />
+            <classpath>
+                <pathelement location="${bin}" />
+            </classpath>
+        </junit>
+    </target>
+
+    <target name="upload" depends="release">
+        <echo message="Uploading latest release to server.."/>
+
+        <!-- Prompt for password -->
+        <input
+            message="Enter password for FTP access:"
+            addproperty="ftp.password" />
+
+        <!-- Connect to the FTF distribution server -->
+        <ftp server="${ftp.host}"
+            userid="${ftp.user}"
+            remotedir="${ftp.host}/${ftp.dir}"
+            password="${ftp.password}"
+            passive="yes">
+
+            <!-- Copy everything over in the release folder -->
+            <fileset dir="${release}">
+                <include name="**/*"/>
+            </fileset>
+        </ftp>
+    </target>
+
+</project>

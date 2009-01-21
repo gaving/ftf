@@ -1,0 +1,4 @@
+href=[\"']([^\"']*pdf[^\"']*)[\"']
+href=[\"']([^\"']*PDFSTART)[\"']
+href=[\"']([^\"']*reprint[^\"]*)[\"']
+href=[\"']javascript:newWindow\\('([^']*)'\\)[\"']

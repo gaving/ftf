@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="include/htmlparser.jar"/>
+	<classpathentry kind="lib" path="include/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="include/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="include/googleapi.jar"/>
+	<classpathentry kind="lib" path="include/yahoo_search-2.0.0.jar"/>
+	<classpathentry kind="lib" path="include/antlr.jar"/>
+	<classpathentry kind="lib" path="include/filterbuilder.jar"/>
+	<classpathentry kind="lib" path="include/gnu-trove-1.0.2.jar"/>
+	<classpathentry kind="lib" path="include/htmllexer.jar"/>
+	<classpathentry kind="lib" path="include/swt-osx_3.3m4.jar"/>
+	<classpathentry kind="lib" path="include/swt-windows_3.3m4.jar"/>
+	<classpathentry kind="lib" path="include/terrier-1.0.2.jar"/>
+	<classpathentry kind="lib" path="include/javabib-bin.jar"/>
+	<classpathentry kind="lib" path="include/xstream-1.2.jar"/>
+	<classpathentry kind="lib" path="include/org.eclipse.core.commands_3.2.0.I20060605-1400.jar"/>
+	<classpathentry kind="lib" path="include/org.eclipse.equinox.common_3.2.0.v20060603.jar"/>
+	<classpathentry kind="lib" path="include/org.eclipse.jface_3.2.2.M20061214-1200.jar"/>
+	<classpathentry kind="lib" path="include/org.eclipse.osgi_3.2.2.R32x_v20070118.jar"/>
+	<classpathentry kind="lib" path="include/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="include/gdapi.jar"/>
+	<classpathentry kind="lib" path="include/jacob.jar"/>
+	<classpathentry kind="lib" path="include/axis.jar"/>
+	<classpathentry kind="lib" path="include/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="include/esti-soap.jar"/>
+	<classpathentry kind="lib" path="include/jaxrpc.jar"/>
+	<classpathentry kind="lib" path="include/wsdl4j-1.5.1.jar"/>
+	<classpathentry kind="lib" path="include/swt-linux_3.4m1.jar"/>
+	<classpathentry kind="lib" path="include/mtj.jar"/>
+	<classpathentry kind="lib" path="include/gp.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

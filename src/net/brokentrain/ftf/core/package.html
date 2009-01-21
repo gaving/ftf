@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+</head>
+<body>
+The core package is responsible for providing the model of the system. Various
+behaviours of the system are delegated to one or more subpackages depending on
+the service required. Additionally, various data structures that were required
+for different operations of these services reside here.
+
+<p> At the heart of Fetcher is the ability to start one or more {@link
+net.brokentrain.ftf.core.Source Sources}, which are responsible for traversing
+a given URL and obtaining results from this page.</p>
+
+<p>
+A result can be identified in different ways. Any result must implement the
+{@link net.brokentrain.ftf.core.DataStore DataStore} interface in order to see
+what it can optionally provide to a user. The three different interfaces are
+mapped below:
+
+<table border="1" cellpadding="3" cellspacing="0">
+  <thead CLASS="TableHeadingColor">
+  <tr>
+    <td>Interface</td><td>Concrete Implementation</td>
+  </tr>
+  </thead>
+  <tr>
+      <td>{@link net.brokentrain.ftf.core.URLStore URLStore}</td>
+      <td>{@link net.brokentrain.ftf.core.URLData URLData}</td>
+  </tr>
+  <tr>
+      <td>{@link net.brokentrain.ftf.core.FileStore FileStore}</td>
+      <td>{@link net.brokentrain.ftf.core.FileData FileData}</td>
+  </tr>
+</table>
+</p>
+
+<p>Additionally, the {@link net.brokentrain.ftf.core.SourceManager
+SourceManager} is responsible for managing these sources.</p>
+
+<p>The {@link net.brokentrain.ftf.core.Config Config} and related {@link
+net.brokentrain.ftf.core.ConfigLoader ConfigLoader} objects handle user
+configuration.</p>
+</body>
+</html>

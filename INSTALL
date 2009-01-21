@@ -1,0 +1,73 @@
+Full-text Fetcher - Installation
+================================
+
+The following are generic installation instructions for the Full-text Fetcher
+software.
+
+Bundled Dependencies
+--------------------
+The following libraries are required for FTF to function and thus are bundled
+with your distribution of FTF:
+
+- Log4J 1.2.14 (http://logging.apache.org/log4j/[])
+- HTML Parser 2 (http://htmlparser.sourceforge.net[])
+- SWT 3.3m4 (http://www.eclipse.org/swt/[])
+- Xerces Java Parser 1.4.4 (http://xerces.apache.org/xerces-j/[])
+- XStream 1.2 (http://xstream.codehaus.org/[])
+- JUnit 4.0 (http://www.junit.org/index.htm[])
+- Javabib 20040801 (http://www-plan.cs.colorado.edu/henkel/stuff/javabib/[])
+
+Additionally, the follow libraries are also explictiyl bundled for specific
+services:
+
+- Terrier 1.0.2 (http://ir.dcs.gla.ac.uk/terrier/[])
+- Google API (http://code.google.com/[])
+- Yahoo API (http://developer.yahoo.com/[])
+
+These all reside within the main application (ftf.jar).
+
+Installing Java
+---------------
+To install or update Java, please visit
+http://www.java.com/en/download/manual.jsp[]. Find your operating system in the
+list, click the appropriate Download button, and follow the linked installation
+instructions.
+
+NOTE: An online installation downloads a small installer program to your
+hard drive, then performs the installation by dynamically requesting data
+from Sun's Java server. You must be connected to the internet to perform
+this type of installation. The offline installation downloads everything you
+need to install Java and can be used when your computer is not connected to
+the internet.
+
+Microsoft Windows installation
+------------------------------
+To install the zip formatted distribution just unzip the contents to a
+new folder and execute the included 'ftf.exe' executable.
+
+Generic Linux/Mac tarball installation
+--------------------------------------
+Carry out the following steps in order to launch FTF:
+
+[subs="normal"]
+  $ mkdir ftf
+  $ cd ftf
+  $ tar xzf ftf-(revision).tar.gz
+  $ ./ftf.sh
+
+NOTE: This script was tested on Gentoo (a GNU/Linux distribution).
+
+IMPORTANT: If you have the Java JRE installed somewhere unusual (or not in your
+PATH), please use the JAVA_PROGRAM_DIR option in the script.
+
+Installing from source
+----------------------
+Optionally, "bleeding-edge" source code can be installed with the following
+steps:
+
+[subs="normal"]
+  $ svn co http://svn.brokentrain.net/ftf/trunk ftf
+  $ cd ftf
+  $ ant run
+
+NOTE: This requires both Subversion and Apache Ant to be installed.

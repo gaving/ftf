@@ -1,0 +1,1032 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.2.1" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock {
+  margin-right: 0%;
+}
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+
+div.attribution {
+  text-align: right;
+}
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hlist td {
+  padding-bottom: 5px;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+
+div#toctitle {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+
+/* IE6 sets dynamically generated links as visited. */
+div#toc a:visited { color: blue; }
+</style>
+<title>Full-text Fetcher - Overview of changes</title>
+</head>
+<body>
+<div id="header">
+<h1>Full-text Fetcher - Overview of changes</h1>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<p>The following is a very brief account of any major features added to
+Full-text Fetcher with each version. 0.2 is the latest release to date.</p>
+</div>
+</div>
+<h2>Version 0.4+ (-)</h2>
+<div class="sectionbody">
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">This release has not been released yet! Please refer to the <tt>TODO</tt>
+file for ideas about what may be implemented in future versions.</td>
+</tr></table>
+</div>
+</div>
+<h2>Version 0.3 (03-10-07)</h2>
+<div class="sectionbody">
+<ul>
+<li>
+<p>
+Core functionality
+</p>
+<ul>
+<li>
+<p>
+Updated release notes.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>
+Services
+</p>
+<ul>
+<li>
+<p>
+Removed CiteSeer as a service as seemed out of place.
+</p>
+</li>
+<li>
+<p>
+Revamped Web of Knowledge support using official web service.
+</p>
+</li>
+<li>
+<p>
+Fixed Google and Yahoo services not obeying proxy information.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>
+Text mining support
+</p>
+<ul>
+<li>
+<p>
+Implemented basic features for the processing of abstracts.
+</p>
+</li>
+<li>
+<p>
+Added ability to save and load individual models.
+</p>
+</li>
+<li>
+<p>
+Extended context menu for ProcessingTabs for getting abstracts and
+    full-text links.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>
+Graphical User Interface
+</p>
+<ul>
+<li>
+<p>
+Added a tool bar for common actions.
+</p>
+</li>
+<li>
+<p>
+Made major parts of the interface toggle-able, i.e. the status bar and tool bar.
+</p>
+</li>
+<li>
+<p>
+Made obtrusive tool tip optional (see preferences)
+</p>
+</li>
+<li>
+<p>
+Proxy information can now be set on the fly.
+</p>
+</li>
+<li>
+<p>
+Column sorting for processing tabs.
+</p>
+</li>
+<li>
+<p>
+Better use of ELink EUtility from NCBI for checking if PubMed results
+    have linkout providers.
+</p>
+</li>
+<li>
+<p>
+Special tabs (transfer, log, status, browser) contents are now reattached
+    when they are closed so the information is not lost on close.
+</p>
+</li>
+<li>
+<p>
+Loads of refactoring to accommodate the two distinct types of tab,
+    FullTextTab and ProcessingTab for working with abstracts.
+</p>
+</li>
+<li>
+<p>
+Getting content type data from each result is now configurable
+    (glimpsing) in order to speed things up when searching.
+</p>
+</li>
+<li>
+<p>
+Similarly, crawling each result (investigating) is now entirely
+    configurable for FullText tabs.
+</p>
+</li>
+<li>
+<p>
+Implemented (though unfinished) term highlighting in the browser tab.
+</p>
+</li>
+<li>
+<p>
+Added export menu for exporting mass id sets.
+</p>
+</li>
+<li>
+<p>
+Services major fixed, only suitable services can be picked for each
+    type of search. Revamp of the settings package to accommodate this.
+</p>
+</li>
+<li>
+<p>
+FIX: Minor issues with the view preferences
+</p>
+</li>
+<li>
+<p>
+FIX: Duplicate results sometimes appeared due to a bug in the status
+    update code.
+</p>
+</li>
+<li>
+<p>
+FIX: Lots of minor stuff.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2>Version 0.2 (24-08-07)</h2>
+<div class="sectionbody">
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">This is a major release.</td>
+</tr></table>
+</div>
+<ul>
+<li>
+<p>
+Core functionality
+</p>
+<ul>
+<li>
+<p>
+Removed bat files for windows distribution and replaced with executable
+</p>
+</li>
+<li>
+<p>
+Moved resources todo with the application into the jar file,
+    including images and all required dependency libraries.
+</p>
+</li>
+<li>
+<p>
+Updated release notes.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>
+New supported services as of 01-07-07
+</p>
+<ul>
+<li>
+<p>
+Google Desktop Search (Windows only)
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>
+Graphical User Interface
+</p>
+<ul>
+<li>
+<p>
+Added hotkeys and mnemonics for buttons and actions
+</p>
+</li>
+<li>
+<p>
+Added properties dialogs for both results and services items in query tabs
+</p>
+</li>
+<li>
+<p>
+Added integrated browser pane for browsing within FTF, including term
+    highlighting in the page that is currently active for the terms that have
+    been entered.
+</p>
+</li>
+<li>
+<p>
+Added session support for saving/opening previous searches
+</p>
+</li>
+<li>
+<p>
+Added support for reporting issues hassle free in the event of a crash
+</p>
+</li>
+<li>
+<p>
+Added context menu for log items
+</p>
+</li>
+<li>
+<p>
+Added preferences dialogs for configuring the behaviour of FTF
+</p>
+</li>
+<li>
+<p>
+Added edit menu with all the usual operations
+</p>
+</li>
+<li>
+<p>
+Added meaningful tooltip for services in the query window
+</p>
+</li>
+<li>
+<p>
+Added system tray support
+</p>
+</li>
+<li>
+<p>
+Added about dialog detailing name, version, authors
+</p>
+</li>
+<li>
+<p>
+Article titles are now displayed in the results menu
+</p>
+</li>
+<li>
+<p>
+Search histories are now saved between sessions
+</p>
+</li>
+<li>
+<p>
+PubMed and PMIDLookups now return detailed PMID data in the metadata pane
+</p>
+</li>
+<li>
+<p>
+Services now can report on how long a particular search took
+</p>
+</li>
+<li>
+<p>
+Changed the layout of application, new search types are now selected by file menu
+</p>
+</li>
+<li>
+<p>
+Services now show the actual query string that was used and can be double clicked
+</p>
+</li>
+<li>
+<p>
+Searches can now be stopped and started
+</p>
+</li>
+<li>
+<p>
+Log window will now give detailed stack traces of errors
+</p>
+</li>
+<li>
+<p>
+User can now report a crash when it happens, debug information logged to
+    the file <em>ftf.log</em> in the current work directory by default
+</p>
+</li>
+<li>
+<p>
+Users can now configure default services that will be used on startup
+</p>
+</li>
+<li>
+<p>
+Certain menu items are now state sensitive, e.g. you can't save a
+    transfer tabs items as a result or something that is not supported to be
+    saved
+</p>
+</li>
+<li>
+<p>
+Metadata panes can now be closed individually with means of a close
+    button (and optionally configured to stay off).
+</p>
+</li>
+<li>
+<p>
+Search terms are now optionally highlighted in the metapane information.
+</p>
+</li>
+<li>
+<p>
+FIX: FTF will no longer <em>hang</em> if a search is initiated and then you try
+    and close the application
+</p>
+</li>
+<li>
+<p>
+FIX: Made metadata pane uneditable
+</p>
+</li>
+<li>
+<p>
+FIX: Metadata content type icon had a strange background colour
+</p>
+</li>
+<li>
+<p>
+FIX: Renamed <em>Locate!</em> button to <em>Fetch!</em>
+</p>
+</li>
+<li>
+<p>
+FIX: Filtered out problematic matches
+</p>
+</li>
+<li>
+<p>
+FIX: Rewrote PubMed Central support
+</p>
+</li>
+<li>
+<p>
+FIX: Version number now stated in application title
+</p>
+</li>
+<li>
+<p>
+FIX: Changed some terminology in the status tab, e.g. <em>Dead</em> to <em>Finished</em>
+</p>
+</li>
+<li>
+<p>
+FIX: Fixed unreasonably long information (price grabs, long urls) from
+    being displayed and these are now ellipsized
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2>Version 0.1.1 (27-03-07)</h2>
+<div class="sectionbody">
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">This is a bug fix release to address some minor issues for usability of
+the system.</td>
+</tr></table>
+</div>
+<ul>
+<li>
+<p>
+Interface
+</p>
+<ul>
+<li>
+<p>
+Sorted Terrier crashing if a suitable terrier_home was not set
+</p>
+</li>
+<li>
+<p>
+Fixed metadata pane staying open for items without metadata
+</p>
+</li>
+<li>
+<p>
+Added icons for Cite Seer and the other lookup services
+</p>
+</li>
+<li>
+<p>
+Removed the arXiv service as a search provider for text
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>
+Standalone applications
+</p>
+<ul>
+<li>
+<p>
+PDFDownloader now actually downloads results that are of PDF type
+</p>
+</li>
+<li>
+<p>
+IDs are now listed with the search results
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2>Version 0.1 (13-03-07)</h2>
+<div class="sectionbody">
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">This is a major release and will be the final state of the system for the
+project report.</td>
+</tr></table>
+</div>
+<ul>
+<li>
+<p>
+Core functionality
+</p>
+<ul>
+<li>
+<p>
+Added logging support integration with Log4j
+</p>
+</li>
+<li>
+<p>
+Added user configuration options
+</p>
+</li>
+<li>
+<p>
+Implemented different search strategies for locating papers
+</p>
+</li>
+<li>
+<p>
+Implemented various link filtering strategies
+</p>
+</li>
+<li>
+<p>
+Implemented URL normalisation techniques and strategies for dealing with
+    broken HTML.
+</p>
+</li>
+<li>
+<p>
+Added text based search
+</p>
+</li>
+<li>
+<p>
+Implemented execution timer for timing of fetches
+</p>
+</li>
+<li>
+<p>
+Implemented price extractor and associated functionality
+</p>
+</li>
+<li>
+<p>
+Implemented progress callbacks
+</p>
+</li>
+<li>
+<p>
+Added apache ant buildfile for building and deployment issues
+</p>
+</li>
+<li>
+<p>
+Added bibtex generation for articles
+</p>
+</li>
+<li>
+<p>
+Added DOI support
+</p>
+</li>
+<li>
+<p>
+Added arXiv support
+</p>
+</li>
+<li>
+<p>
+Implemented unified query language support
+</p>
+</li>
+<li>
+<p>
+Implemented XML export of results
+</p>
+</li>
+<li>
+<p>
+Implemented Bibtex export of results
+</p>
+</li>
+<li>
+<p>
+Implemented file transfer support
+</p>
+</li>
+<li>
+<p>
+Implemented metadata retrieval for articles in a variety of different
+    ways and formats.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>
+Supported services as of 12-03-07
+</p>
+<ul>
+<li>
+<p>
+CiteSeer
+</p>
+</li>
+<li>
+<p>
+Google
+</p>
+</li>
+<li>
+<p>
+Google Scholar
+</p>
+</li>
+<li>
+<p>
+Plos Journals (biology specific site(!))
+</p>
+</li>
+<li>
+<p>
+PubMed
+</p>
+</li>
+<li>
+<p>
+PubMed Central
+</p>
+</li>
+<li>
+<p>
+Scirus
+</p>
+</li>
+<li>
+<p>
+Terrier
+</p>
+</li>
+<li>
+<p>
+Web Of Knowledge
+</p>
+</li>
+<li>
+<p>
+Yahoo
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>
+Example Applications
+</p>
+<ul>
+<li>
+<p>
+Added generic mass pdf downloader to demonstrate API
+</p>
+</li>
+<li>
+<p>
+ID lookup utility
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>
+Interface
+</p>
+<ul>
+<li>
+<p>
+Added a command-line interface
+</p>
+</li>
+<li>
+<p>
+Added a graphical interface
+</p>
+</li>
+<li>
+<p>
+Integrated log4j output
+</p>
+</li>
+<li>
+<p>
+Handles command line arguments
+</p>
+</li>
+<li>
+<p>
+Allows runtime toggling of services
+</p>
+</li>
+<li>
+<p>
+Added progress-bar for progression updates
+</p>
+</li>
+<li>
+<p>
+Added icons for each service
+</p>
+</li>
+<li>
+<p>
+Added menu items for each result
+</p>
+</li>
+<li>
+<p>
+Tabs now show total amount of results on their header
+</p>
+</li>
+<li>
+<p>
+Added icons for different result types
+</p>
+</li>
+<li>
+<p>
+Added Suitable default action for result double clicks
+</p>
+</li>
+<li>
+<p>
+Added Metadata pane for previewing article information
+</p>
+</li>
+<li>
+<p>
+Added Transfer functionality
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 03-Oct-2007 11:03:53 BST
+</div>
+</div>
+</body>
+</html>
