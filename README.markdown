@@ -14,13 +14,6 @@ Full-text Fetcher is written in Java so you need the suitable Java SDK (version
 5.0 or later) to run be able to run it. Please refer to the `INSTALL`
 documentation for details on how to do this.
 
-## Obtaining
-
-The latest version and online documentation can either be obtained in
-archive format from http://gavin.brokentrain.net/projects/ftf.tar.gz[] or
-checked out directly from the subversion repository
-http://svn.brokentrain.net/ftf/trunk[].
-
 ## Installing
 
 Please refer to the accompanying `INSTALL` file.
@@ -35,8 +28,7 @@ Please refer to the accompanying `INSTALL` file.
 
 ## Contact
 
-In the event of any bugs, issues or just general comments please contact the
-author at mailto:gavin@brokentrain.net[]
+In the event of any bugs, issues or just general comments please contact me.
 
 ## Licensing
 
