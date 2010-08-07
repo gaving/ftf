@@ -1,1 +1,181 @@
-../../CHANGELOG
+Full-text Fetcher - Overview of changes
+=======================================
+
+The following is a very brief account of any major features added to
+Full-text Fetcher with each version. 0.2 is the latest release to date.
+
+Version 0.4+ (-)
+----------------
+IMPORTANT: This release has not been released yet! Please refer to the `TODO`
+file for ideas about what may be implemented in future versions.
+
+Version 0.3 (03-10-07)
+----------------------
+
+- Core functionality
+    * Updated release notes.
+
+- Services
+    * Removed CiteSeer as a service as seemed out of place.
+    * Revamped Web of Knowledge support using official web service.
+    * Fixed Google and Yahoo services not obeying proxy information.
+
+- Text mining support
+    * Implemented basic features for the processing of abstracts.
+    * Added ability to save and load individual models.
+    * Extended context menu for ProcessingTabs for getting abstracts and
+    full-text links.
+
+- Graphical User Interface
+    * Added a tool bar for common actions.
+    * Made major parts of the interface toggle-able, i.e. the status bar and tool bar.
+    * Made obtrusive tool tip optional (see preferences)
+    * Proxy information can now be set on the fly.
+    * Column sorting for processing tabs.
+    * Better use of ELink EUtility from NCBI for checking if PubMed results
+    have linkout providers.
+    * Special tabs (transfer, log, status, browser) contents are now reattached
+    when they are closed so the information is not lost on close.
+    * Loads of refactoring to accommodate the two distinct types of tab,
+    FullTextTab and ProcessingTab for working with abstracts.
+    * Getting content type data from each result is now configurable
+    (glimpsing) in order to speed things up when searching.
+    * Similarly, crawling each result (investigating) is now entirely
+    configurable for FullText tabs.
+    * Implemented (though unfinished) term highlighting in the browser tab.
+    * Added export menu for exporting mass id sets.
+    * Services major fixed, only suitable services can be picked for each
+    type of search. Revamp of the settings package to accommodate this.
+    * FIX: Minor issues with the view preferences
+    * FIX: Duplicate results sometimes appeared due to a bug in the status
+    update code.
+    * FIX: Lots of minor stuff.
+
+Version 0.2 (24-08-07)
+----------------------
+TIP: This is a major release.
+
+- Core functionality
+    * Removed bat files for windows distribution and replaced with executable
+    * Moved resources todo with the application into the jar file,
+    including images and all required dependency libraries.
+    * Updated release notes.
+
+- New supported services as of 01-07-07
+    * Google Desktop Search (Windows only)
+
+- Graphical User Interface
+    * Added hotkeys and mnemonics for buttons and actions
+    * Added properties dialogs for both results and services items in query tabs
+    * Added integrated browser pane for browsing within FTF, including term
+    highlighting in the page that is currently active for the terms that have
+    been entered.
+    * Added session support for saving/opening previous searches
+    * Added support for reporting issues hassle free in the event of a crash
+    * Added context menu for log items
+    * Added preferences dialogs for configuring the behaviour of FTF
+    * Added edit menu with all the usual operations
+    * Added meaningful tooltip for services in the query window
+    * Added system tray support
+    * Added about dialog detailing name, version, authors
+    * Article titles are now displayed in the results menu
+    * Search histories are now saved between sessions
+    * PubMed and PMIDLookups now return detailed PMID data in the metadata pane
+    * Services now can report on how long a particular search took
+    * Changed the layout of application, new search types are now selected by file menu
+    * Services now show the actual query string that was used and can be double clicked
+    * Searches can now be stopped and started
+    * Log window will now give detailed stack traces of errors
+    * User can now report a crash when it happens, debug information logged to
+    the file 'ftf.log' in the current work directory by default
+    * Users can now configure default services that will be used on startup
+    * Certain menu items are now state sensitive, e.g. you can't save a
+    transfer tabs items as a result or something that is not supported to be
+    saved
+    * Metadata panes can now be closed individually with means of a close
+    button (and optionally configured to stay off).
+    * Search terms are now optionally highlighted in the metapane information.
+    * FIX: FTF will no longer 'hang' if a search is initiated and then you try
+    and close the application
+    * FIX: Made metadata pane uneditable
+    * FIX: Metadata content type icon had a strange background colour
+    * FIX: Renamed 'Locate!' button to 'Fetch!'
+    * FIX: Filtered out problematic matches
+    * FIX: Rewrote PubMed Central support
+    * FIX: Version number now stated in application title
+    * FIX: Changed some terminology in the status tab, e.g. 'Dead' to 'Finished'
+    * FIX: Fixed unreasonably long information (price grabs, long urls) from
+    being displayed and these are now ellipsized
+
+Version 0.1.1 (27-03-07)
+------------------------
+TIP: This is a bug fix release to address some minor issues for usability of
+the system.
+
+- Interface
+    * Sorted Terrier crashing if a suitable terrier_home was not set
+    * Fixed metadata pane staying open for items without metadata
+    * Added icons for Cite Seer and the other lookup services
+    * Removed the arXiv service as a search provider for text
+
+- Standalone applications
+    * PDFDownloader now actually downloads results that are of PDF type
+    * IDs are now listed with the search results
+
+Version 0.1 (13-03-07)
+----------------------
+TIP: This is a major release and will be the final state of the system for the
+project report.
+
+- Core functionality
+    * Added logging support integration with Log4j
+    * Added user configuration options
+    * Implemented different search strategies for locating papers
+    * Implemented various link filtering strategies
+    * Implemented URL normalisation techniques and strategies for dealing with
+    broken HTML.
+    * Added text based search
+    * Implemented execution timer for timing of fetches
+    * Implemented price extractor and associated functionality
+    * Implemented progress callbacks
+    * Added apache ant buildfile for building and deployment issues
+    * Added bibtex generation for articles
+    * Added DOI support
+    * Added arXiv support
+    * Implemented unified query language support
+    * Implemented XML export of results
+    * Implemented Bibtex export of results
+    * Implemented file transfer support
+    * Implemented metadata retrieval for articles in a variety of different
+    ways and formats.
+
+- Supported services as of 12-03-07
+    * CiteSeer
+    * Google
+    * Google Scholar
+    * Plos Journals (biology specific site(!))
+    * PubMed
+    * PubMed Central
+    * Scirus
+    * Terrier
+    * Web Of Knowledge
+    * Yahoo
+
+- Example Applications
+    * Added generic mass pdf downloader to demonstrate API
+    * ID lookup utility
+
+- Interface
+    * Added a command-line interface
+    * Added a graphical interface
+    * Integrated log4j output
+    * Handles command line arguments
+    * Allows runtime toggling of services
+    * Added progress-bar for progression updates
+    * Added icons for each service
+    * Added menu items for each result
+    * Tabs now show total amount of results on their header
+    * Added icons for different result types
+    * Added Suitable default action for result double clicks
+    * Added Metadata pane for previewing article information
+    * Added Transfer functionality
