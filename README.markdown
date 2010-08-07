@@ -27,11 +27,11 @@ Please refer to the accompanying `INSTALL` file.
 
 ## Screenshots
 
-![interface](http://github.com/gaving/rt-phone/raw/master/site/1.png)
-![interface](http://github.com/gaving/rt-phone/raw/master/site/2.png)
-![interface](http://github.com/gaving/rt-phone/raw/master/site/3.png)
-![interface](http://github.com/gaving/rt-phone/raw/master/site/4.png)
-![interface](http://github.com/gaving/rt-phone/raw/master/site/5.png)
+![interface](http://github.com/gaving/ftf/raw/master/site/1.png)
+![interface](http://github.com/gaving/ftf/raw/master/site/2.png)
+![interface](http://github.com/gaving/ftf/raw/master/site/3.png)
+![interface](http://github.com/gaving/ftf/raw/master/site/4.png)
+![interface](http://github.com/gaving/ftf/raw/master/site/5.png)
 
 ## Contact
 
