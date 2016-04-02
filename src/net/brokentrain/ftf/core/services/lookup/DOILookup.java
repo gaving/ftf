@@ -15,7 +15,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Responsible for looking up an Article's metadata based on DOI. Using the
- * services provided by the crossref.org web service and official dx.doi.org
+ * services provided by the crossref.org web service and official doi.org
  * site we can obtain a direct link to an articles full-text based on it's DOI.
  */
 public class DOILookup extends DefaultHandler {
@@ -49,7 +49,7 @@ public class DOILookup extends DefaultHandler {
         try {
             infoString = new URL(
                     "http://www.crossref.org/openurl/?id=doi:%s&noredirect=true");
-            urlString = new URL("http://dx.doi.org/%s");
+            urlString = new URL("https://doi.org/%s");
         } catch (MalformedURLException mue) {
             log.error(mue.getMessage());
         }
